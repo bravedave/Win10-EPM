@@ -9,7 +9,7 @@ This module can be added to any project using DVC Framework
 
 ```php
 <?php
-class home extends dvc\wepm\controller {}
+class wepm extends dvc\wepm\controller {}
 
 ```
 
