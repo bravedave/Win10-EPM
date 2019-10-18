@@ -37,7 +37,7 @@ To use DVC on a Windows 10 computer (Devel Environment)
    * mkdir c:\data
    * cd c:\data
    * setup a new project
-     * `composer create-project bravedave/wepm wepm @dev`
+     * `composer create-project bravedave/win10_epm wepm @dev`
    * the project is now set up in c:\data\wepm
      * cd wepm
 

@@ -1,5 +1,5 @@
 {
-	"name": "bravedave/wepm",
+	"name": "bravedave/win10_epm",
 	"description": "Windows 10 End Point Monitor",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
