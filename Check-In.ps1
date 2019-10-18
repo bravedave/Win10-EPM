@@ -13,6 +13,16 @@
 #	https://www.techrepublic.com/article/using-powershell-to-investigate-windows-defenders-malware-signature-definitions-database/
 # 	https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/enable-controlled-folders#powershell
 #
+#
+# Execution Policies
+# 	https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6
+#
+# Signing Scripts
+#	https://www.hanselman.com/blog/SigningPowerShellScripts.aspx
+#
+# To sign a script with your codecert - if it is installed and valid
+#	Set-AuthenticodeSignature c:\foo.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesign)[0]
+#
 ###
 
 Try
