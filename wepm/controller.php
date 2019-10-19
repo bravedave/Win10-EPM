@@ -10,7 +10,11 @@
  * */
 
 namespace dvc\wepm;
+
+use dvc\Request;
+
 use strings;
+use sys;
 
 class controller extends \Controller {
 	protected function _index() {
@@ -88,10 +92,16 @@ class controller extends \Controller {
 
 	function __construct( $rootPath ) {
 		$this->label = config::$WEBNAME;
-		if ( $this->isPost()) {
-			$action = $this->getPost('action');
+
+		/**
+		 * have to use application wide Request
+		 * - it is not initiated on controller yet
+		 */
+		if ( Request::get()->isPost()) {
+			$action = Request::get()->getPost('action');
 			if ( 'wemp-log' == $action) {
 				$this->RequireValidation = false;
+				sys::logger( sprintf('set RequireValidation false : %s', __METHOD__));
 
 			}
 
