@@ -25,6 +25,7 @@ $executionPolicy = json_decode( $dto->executionPolicy);
         <tr><td>Antispyware</td>        <td><?= $dto->Antispyware  ?></td>     </tr>
         <tr><td>OnAccessProtection</td> <td><?= $dto->OnAccessProtection  ?></td>     </tr>
         <tr><td>RealTimeProtection</td> <td><?= $dto->RealTimeProtection  ?></td>     </tr>
+        <tr><td>ControlledFolderAccess</td> <td><?= $dto->ControlledFolderAccess  ?></td>     </tr>
 
         <tr><td colspan="2"><br />powershell execution policy</td>    </tr>
         <tr><td>UserPolicy</td>         <td><?= $executionPolicy->UserPolicy  ?></td>   </tr>

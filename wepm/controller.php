@@ -67,6 +67,7 @@ class controller extends \Controller {
 					'Antispyware' => $this->getPost('Antispyware'),
 					'OnAccessProtection' => $this->getPost('OnAccessProtection'),
 					'RealTimeProtection' => $this->getPost('RealTimeProtection'),
+					'ControlledFolderAccess' => $this->getPost('ControlledFolderAccess'),
 					'executionPolicy' => \json_encode([
 						'UserPolicy' => $this->getPost('executionPolicy_UserPolicy'),
 						'Process' => $this->getPost('executionPolicy_Process'),

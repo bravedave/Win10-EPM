@@ -23,6 +23,7 @@ $dbc->defineField( 'defenderService', 'varchar');
 $dbc->defineField( 'Antispyware', 'varchar');
 $dbc->defineField( 'OnAccessProtection', 'varchar');
 $dbc->defineField( 'RealTimeProtection', 'varchar');
+$dbc->defineField( 'ControlledFolderAccess', 'varchar');
 $dbc->defineField( 'executionPolicy', 'text');
 
 $dbc->defineIndex('idx_wepm_event_created', 'created' );

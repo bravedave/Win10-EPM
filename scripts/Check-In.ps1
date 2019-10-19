@@ -36,6 +36,7 @@ $params = @{
 	Antispyware                  = 'Disabled';
 	OnAccessProtection           = 'Disabled';
 	RealTimeProtection           = 'Disabled';
+	ControlledFolderAccess       = 'Disabled';
 	executionPolicy_UserPolicy   = Get-ExecutionPolicy UserPolicy;
 	executionPolicy_Process      = Get-ExecutionPolicy Process;
 	executionPolicy_CurrentUser  = Get-ExecutionPolicy CurrentUser;
@@ -45,6 +46,7 @@ $params = @{
 
 Try
 {
+	$preferences = Get-MpPreference;
 	$defenderOptions = Get-MpComputerStatus;
 
     if([string]::IsNullOrEmpty($defenderOptions)) {}
@@ -86,12 +88,14 @@ Try
 			locale = $env:computername;		# 45 chr max
 			action = "wemp-log";			# 45 chr max
 
-			defender 					= if ( $defenderOptions.AntivirusEnabled) {'Enabled'} else {'Disabled'};
-			defenderService             = if ( $defenderOptions.AMServiceEnabled) { 'Enabled' } else { 'Disabled' };
-			Antispyware             	= if ( $defenderOptions.AntispywareEnabled) { 'Enabled' } else { 'Disabled' };
-			OnAccessProtection          = if ( $defenderOptions.OnAccessProtectionEnabled) { 'Enabled' } else { 'Disabled' };
-			RealTimeProtection          = if ( $defenderOptions.RealTimeProtectionEnabled) { 'Enabled' } else { 'Disabled' };
-			executionPolicy_UserPolicy  = Get-ExecutionPolicy UserPolicy;
+			defender = if ( $defenderOptions.AntivirusEnabled) {'Enabled'} else {'Disabled'};
+			defenderService = if ( $defenderOptions.AMServiceEnabled) { 'Enabled' } else { 'Disabled' };
+			Antispyware = if ( $defenderOptions.AntispywareEnabled) { 'Enabled' } else { 'Disabled' };
+			OnAccessProtection = if ( $defenderOptions.OnAccessProtectionEnabled) { 'Enabled' } else { 'Disabled' };
+			RealTimeProtection = if ( $defenderOptions.RealTimeProtectionEnabled) { 'Enabled' } else { 'Disabled' };
+			ControlledFolderAccess = if ( $preferences.EnableControlledFolderAccess = '1') { 'Enabled' } else { 'Disabled' };
+
+			executionPolicy_UserPolicy = Get-ExecutionPolicy UserPolicy;
 			executionPolicy_Process 	= Get-ExecutionPolicy Process;
 			executionPolicy_CurrentUser = Get-ExecutionPolicy CurrentUser;
 			executionPolicy_LocalMachine = Get-ExecutionPolicy LocalMachine;
