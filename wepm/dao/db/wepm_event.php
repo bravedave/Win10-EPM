@@ -17,9 +17,13 @@ $dbc = 'sqlite' == \config::$DB_TYPE ?
 
 $dbc->defineField( 'created', 'datetime');
 $dbc->defineField( 'updated', 'datetime');
-$dbc->defineField( 'event', 'varchar');
 $dbc->defineField( 'locale', 'varchar');
-$dbc->defineField( 'active', 'varchar');
+$dbc->defineField( 'defender', 'varchar');
+$dbc->defineField( 'defenderService', 'varchar');
+$dbc->defineField( 'Antispyware', 'varchar');
+$dbc->defineField( 'OnAccessProtection', 'varchar');
+$dbc->defineField( 'RealTimeProtection', 'varchar');
+$dbc->defineField( 'executionPolicy', 'text');
 
 $dbc->defineIndex('idx_wepm_event_created', 'created' );
 

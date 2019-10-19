@@ -1,4 +1,4 @@
-﻿#
+﻿###
 # David Bray
 # BrayWorth Pty Ltd
 # e. david@brayworth.com.au
@@ -25,27 +25,36 @@
 #
 ###
 
+$url = "http://localhost"	# development environment
+$params = @{
+	key                          = "-- some random password --";
+	locale                       = $env:computername; # 45 chr max
+	action                       = "wemp-log"; # 45 chr max
+
+	defender                     = 'Disabled';
+	defenderService              = 'Disabled';
+	Antispyware                  = 'Disabled';
+	OnAccessProtection           = 'Disabled';
+	RealTimeProtection           = 'Disabled';
+	executionPolicy_UserPolicy   = Get-ExecutionPolicy UserPolicy;
+	executionPolicy_Process      = Get-ExecutionPolicy Process;
+	executionPolicy_CurrentUser  = Get-ExecutionPolicy CurrentUser;
+	executionPolicy_LocalMachine = Get-ExecutionPolicy LocalMachine;
+
+}
+
 Try
 {
-	$url = "http://localhost"	# development environment
 	$defenderOptions = Get-MpComputerStatus;
-	$active = ""
 
-    if([string]::IsNullOrEmpty($defenderOptions)) {
-		$active = "not running"
-
-    }
-    else
-    {
+    if([string]::IsNullOrEmpty($defenderOptions)) {}
+    else {
 		# AMEngineVersion                 : 1.1.16400.2
 		# AMProductVersion                : 4.18.1909.6
-		# AMServiceEnabled                : True
 		# AMServiceVersion                : 4.18.1909.6
-		# AntispywareEnabled              : True
 		# AntispywareSignatureAge         : 0
 		# AntispywareSignatureLastUpdated : 15/10/2019 1:28:42 AM
 		# AntispywareSignatureVersion     : 1.303.1684.0
-		# AntivirusEnabled                : True
 		# AntivirusSignatureAge           : 0
 		# AntivirusSignatureLastUpdated   : 15/10/2019 1:28:43 AM
 		# AntivirusSignatureVersion       : 1.303.1684.0
@@ -69,38 +78,33 @@ Try
 		# QuickScanAge                    : 2
 		# QuickScanEndTime                : 13/10/2019 11:14:47 AM
 		# QuickScanStartTime              : 13/10/2019 11:09:33 AM
-		# RealTimeProtectionEnabled       : True
 		# RealTimeScanDirection           : 0
 		# PSComputerName                  :
 
+		$params = @{
+			key = "-- some random password --";
+			locale = $env:computername;		# 45 chr max
+			action = "wemp-log";			# 45 chr max
 
-        # Write-host "Windows Defender was found on the Server:" $env:computername -foregroundcolor "Cyan"
-        # Write-host "   Is Windows Defender Enabled?" $defenderOptions.AntivirusEnabled
-        # Write-host "   Is Windows Defender Service Enabled?" $defenderOptions.AMServiceEnabled
-        # Write-host "   Is Windows Defender Antispyware Enabled?" $defenderOptions.AntispywareEnabled
-        # Write-host "   Is Windows Defender OnAccessProtection Enabled?"$defenderOptions.OnAccessProtectionEnabled
-        # Write-host "   Is Windows Defender RealTimeProtection Enabled?"$defenderOptions.RealTimeProtectionEnabled
+			defender 					= if ( $defenderOptions.AntivirusEnabled) {'Enabled'} else {'Disabled'};
+			defenderService             = if ( $defenderOptions.AMServiceEnabled) { 'Enabled' } else { 'Disabled' };
+			Antispyware             	= if ( $defenderOptions.AntispywareEnabled) { 'Enabled' } else { 'Disabled' };
+			OnAccessProtection          = if ( $defenderOptions.OnAccessProtectionEnabled) { 'Enabled' } else { 'Disabled' };
+			RealTimeProtection          = if ( $defenderOptions.RealTimeProtectionEnabled) { 'Enabled' } else { 'Disabled' };
+			executionPolicy_UserPolicy  = Get-ExecutionPolicy UserPolicy;
+			executionPolicy_Process 	= Get-ExecutionPolicy Process;
+			executionPolicy_CurrentUser = Get-ExecutionPolicy CurrentUser;
+			executionPolicy_LocalMachine = Get-ExecutionPolicy LocalMachine;
 
-		$active = $defenderOptions.AntivirusEnabled;
+		}
 
 	}
 
 }
-Catch {
-	$active = "not running"
-
-}
-
-# Make API request, selecting JSON properties from response
-$params = @{
-	key = "-- some random password --";
-	locale = $env:computername;
-	action = "wemp-log"
-	event = "Windows Defender";
-	active = $active;
-}
+Catch {}
 
 $r = Invoke-WebRequest $url -Method Post -Body $params -UseBasicParsing
 # dispose of r
 
-Write-Output $r->Content
+Write-Output $r->Content;
+# Write-Output $params;

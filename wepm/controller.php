@@ -36,6 +36,15 @@ class controller extends \Controller {
 	protected function before() {
 		config::wepm_checkdatabase();
 
+		if ( $this->isPost()) {
+			$action = $this->getPost('action');
+			if ( 'wemp-log' == $action) {
+				$this->RequireValidation = false;
+
+			}
+
+		}
+
 		parent::before();
 
 	}
@@ -58,9 +67,19 @@ class controller extends \Controller {
 				$a = [
 					'created' => \db::dbTimestamp(),
 					'updated' => \db::dbTimestamp(),
-					'event' => $this->getPost('event'),
 					'locale' => $this->getPost('locale'),
-					'active' => $this->getPost('active'),
+					'defender' => $this->getPost('defender'),
+					'defenderService' => $this->getPost('defenderService'),
+					'Antispyware' => $this->getPost('Antispyware'),
+					'OnAccessProtection' => $this->getPost('OnAccessProtection'),
+					'RealTimeProtection' => $this->getPost('RealTimeProtection'),
+					'executionPolicy' => \json_encode([
+						'UserPolicy' => $this->getPost('executionPolicy_UserPolicy'),
+						'Process' => $this->getPost('executionPolicy_Process'),
+						'CurrentUser' => $this->getPost('executionPolicy_CurrentUser'),
+						'LocalMachine' => $this->getPost('executionPolicy_LocalMachine'),
+
+					])
 
 				];
 
@@ -70,6 +89,7 @@ class controller extends \Controller {
 			}
 
 			\Json::ack( $action);
+			return;	// because validation is disabled if this action is valid
 
 		}
 		else { \Json::nak( $action); }
@@ -79,6 +99,28 @@ class controller extends \Controller {
 	function __construct( $rootPath ) {
 		$this->label = config::$WEBNAME;
 		parent::__construct( $rootPath);
+
+	}
+
+	function view( $id = 0) {
+		if ( $id = (int)$id ) {
+			$dao = new dao\wepm_event;
+			if ( $dto = $dao->getByID( $id)) {
+				$this->data = (object)[
+					'dto' => $dto,
+
+				];
+
+				$this->render([
+					'title' => $this->title = 'WEPM Event : view',
+					'primary' => 'event-view',
+					'secondary' =>'index'
+
+				]);
+
+			}
+
+		}
 
 	}
 

@@ -11,6 +11,8 @@
 
 class config extends dvc\config {
 	static $DATE_FORMAT = 'd/m/Y';
+	static $DATETIME_FORMAT = 'd/m/Y g:ia';
+
 	static $DB_TYPE = 'sqlite';
 
 	static $TIMEZONE = 'Australia/Brisbane';
