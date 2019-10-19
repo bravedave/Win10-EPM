@@ -35,16 +35,6 @@ class controller extends \Controller {
 
 	protected function before() {
 		config::wepm_checkdatabase();
-
-		if ( $this->isPost()) {
-			$action = $this->getPost('action');
-			if ( 'wemp-log' == $action) {
-				$this->RequireValidation = false;
-
-			}
-
-		}
-
 		parent::before();
 
 	}
@@ -98,6 +88,15 @@ class controller extends \Controller {
 
 	function __construct( $rootPath ) {
 		$this->label = config::$WEBNAME;
+		if ( $this->isPost()) {
+			$action = $this->getPost('action');
+			if ( 'wemp-log' == $action) {
+				$this->RequireValidation = false;
+
+			}
+
+		}
+
 		parent::__construct( $rootPath);
 
 	}
