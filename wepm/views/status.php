@@ -17,6 +17,7 @@
         <thead class="small">
             <tr>
                 <td class="align-bottom">updated</td>
+                <td class="align-bottom text-center">elapsed<br /><i>(minutes)</i></td>
                 <td class="align-bottom">locale</td>
                 <td class="align-bottom text-center">defender</td>
                 <td class="align-bottom text-center">Antispyware</td>
@@ -29,10 +30,14 @@
         </thead>
 
         <tbody>
-        <?php   foreach ( $this->data->dtoSet as $dto) {    ?>
+        <?php   foreach ( $this->data->dtoSet as $dto) {
+            $ago = (int)( (time() - strtotime( $dto->updated)) / 60);
+                ?>
             <tr
-                data-id="<?= $dto->id ?>">
+                data-id="<?= $dto->id ?>"
+                <?php if ( $ago > 120) print 'class="bg-warning"' ?>>
                 <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
+                <td class="text-center"><?= number_format( $ago) ?></td>
                 <td><?= $dto->locale ?></td>
                 <td class="text-center"><?= $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
                 <td class="text-center"><?= $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
