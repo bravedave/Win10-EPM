@@ -11,6 +11,7 @@ The supplied examples work with localhost so with this running on localhost:80
 execute the command
 ```powershell
   powershell -ExecutionPolicy bypass .\scripts\Check-In.ps1
+```
 
 ## Install
   composer require bravedave/wepm
