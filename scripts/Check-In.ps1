@@ -21,7 +21,10 @@
 #	https://www.hanselman.com/blog/SigningPowerShellScripts.aspx
 #
 # To sign a script with your codecert - if it is installed and valid
-#	Set-AuthenticodeSignature c:\foo.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesign)[0]
+#	Set-AuthenticodeSignature .\scripts\Check-In.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesign)[0]
+#
+# This script can be run from a command prompt regardless of the machine execution policy
+#	powershell -ExecutionPolicy bypass Check-In.ps1
 #
 ###
 

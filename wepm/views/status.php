@@ -14,11 +14,15 @@
 <h1 class="d-none d-print-block"><?= $this->title ?></h1>
 <div class="table-responsive">
     <table class="table table-sm" id="<?= $tblID = strings::rand() ?>">
-        <thead>
+        <thead class="small">
             <tr>
-                <td>created</td>
-                <td>locale</td>
-                <td>defender</td>
+                <td class="align-bottom">updated</td>
+                <td class="align-bottom">locale</td>
+                <td class="align-bottom text-center">defender</td>
+                <td class="align-bottom text-center">Antispyware</td>
+                <td class="align-bottom text-center">OnAccess<br />Protection</td>
+                <td class="align-bottom text-center">RealTime<br />Protection</td>
+                <td class="align-bottom text-center">Controlled<br />Folder<br />Access</td>
 
             </tr>
 
@@ -28,9 +32,13 @@
         <?php   foreach ( $this->data->dtoSet as $dto) {    ?>
             <tr
                 data-id="<?= $dto->id ?>">
-                <td><?= strings::asLocalDate( $dto->created, true) ?></td>
+                <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
                 <td><?= $dto->locale ?></td>
-                <td><?= $dto->defender ?></td>
+                <td class="text-center"><?= $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= $dto->OnAccessProtection ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= $dto->RealTimeProtection ? strings::html_tick : '<span class="text-danger">&times;</span>'  ?></td>
+                <td class="text-center"><?= $dto->ControlledFolderAccess ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
 
             </tr>
 

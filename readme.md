@@ -2,6 +2,16 @@
 
 This module can be added to any project using DVC Framework
 
+# About
+
+The idea is to run this on a local network, client workstations (Windows 10)
+will run a Check-In script updating their current status to this server.
+
+The supplied examples work with localhost so with this running on localhost:80
+execute the command
+```powershell
+  powershell -ExecutionPolicy bypass .\scripts\Check-In.ps1
+
 ## Install
   composer require bravedave/wepm
 
