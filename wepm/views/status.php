@@ -28,7 +28,7 @@
         <?php   foreach ( $this->data->dtoSet as $dto) {    ?>
             <tr
                 data-id="<?= $dto->id ?>">
-                <td><?= strings::asLocalDate( $dto->created) ?></td>
+                <td><?= strings::asLocalDate( $dto->created, true) ?></td>
                 <td><?= $dto->locale ?></td>
                 <td><?= $dto->defender ?></td>
 
