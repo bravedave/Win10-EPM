@@ -29,6 +29,7 @@ class controller extends \Controller {
 		];
 
 		$this->render([
+			'meta' => [ sprintf( '<meta http-equiv="refresh" content="300; url=%s" />', strings::url( $this->route))],
 			'title' => $this->title = $this->label,
 			'primary' => 'report',
 			'secondary' =>'index'
