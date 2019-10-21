@@ -103,7 +103,7 @@ class controller extends \Controller {
 			$action = Request::get()->getPost('action');
 			if ( 'wemp-log' == $action) {
 				$this->RequireValidation = false;
-				sys::logger( sprintf('set RequireValidation false : %s', __METHOD__));
+				// sys::logger( sprintf('set RequireValidation false : %s', __METHOD__));
 
 			}
 
