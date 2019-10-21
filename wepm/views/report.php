@@ -29,6 +29,7 @@
                 <td class="align-bottom text-center">OnAccess<br />Protection</td>
                 <td class="align-bottom text-center">RealTime<br />Protection</td>
                 <td class="align-bottom text-center">Controlled<br />Folder<br />Access</td>
+                <td class="align-bottom text-center">PowerShell<br />Execution<br />Policy</td>
 
             </tr>
 
@@ -56,6 +57,32 @@
                 <td class="text-center"><?= $dto->OnAccessProtection ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
                 <td class="text-center"><?= $dto->RealTimeProtection ? strings::html_tick : '<span class="text-danger">&times;</span>'  ?></td>
                 <td class="text-center"><?= $dto->ControlledFolderAccess ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+
+                <?php
+                $executionPolicy = json_decode( $dto->executionPolicy);
+                $goodPolicy = [
+                    'Undefined',
+                    'Restricted',
+                    'RemoteSigned',
+
+                ];
+
+                if (
+                    in_array( $executionPolicy->UserPolicy, $goodPolicy) &&
+                    in_array( $executionPolicy->Process, $goodPolicy) &&
+                    in_array( $executionPolicy->CurrentUser, $goodPolicy) &&
+                    in_array( $executionPolicy->LocalMachine, $goodPolicy)
+                ) {
+                    printf( '<td class="text-center">%s</td>', strings::html_tick);
+
+                }
+                else {
+                    print '<td class="text-center text-danger">&times;</td>';
+
+                }
+
+                ?>
+
 
             </tr>
 
