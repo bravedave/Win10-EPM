@@ -52,11 +52,11 @@
                 <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
                 <td class="text-center"><?= number_format( $ago) ?></td>
                 <td><?= $dto->locale ?></td>
-                <td class="text-center"><?= $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
-                <td class="text-center"><?= $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
-                <td class="text-center"><?= $dto->OnAccessProtection ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
-                <td class="text-center"><?= $dto->RealTimeProtection ? strings::html_tick : '<span class="text-danger">&times;</span>'  ?></td>
-                <td class="text-center"><?= $dto->ControlledFolderAccess ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= 'Enabled' == $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= 'Enabled' == $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= 'Enabled' == $dto->OnAccessProtection ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
+                <td class="text-center"><?= 'Enabled' == $dto->RealTimeProtection ? strings::html_tick : '<span class="text-danger">&times;</span>'  ?></td>
+                <td class="text-center"><?= 'Enabled' == $dto->ControlledFolderAccess ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
 
                 <?php
                 $executionPolicy = json_decode( $dto->executionPolicy);
