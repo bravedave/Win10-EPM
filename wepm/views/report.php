@@ -11,11 +11,16 @@
 
 // sys::dump( $this->data);
 ?>
+<style>
+.bg-warning { background-color: #fff3cd!important; }
+.bg-success { background-color: #d4edda!important; }
+</style>
 <h1 class="d-none d-print-block"><?= $this->title ?></h1>
 <div class="table-responsive">
     <table class="table table-sm" id="<?= $tblID = strings::rand() ?>">
         <thead class="small">
             <tr>
+                <td class="align-bottom text-center" line-number>#</td>
                 <td class="align-bottom">updated</td>
                 <td class="align-bottom text-center">elapsed<br /><i>(minutes)</i></td>
                 <td class="align-bottom">locale</td>
@@ -35,7 +40,14 @@
                 ?>
             <tr
                 data-id="<?= $dto->id ?>"
-                <?php if ( $ago > 120) print 'class="bg-warning"' ?>>
+                <?php
+                if ( $ago > 120)
+                    print 'class="bg-warning"';
+                elseif ( $ago < 60)
+                    print 'class="bg-success"';
+                ?>>
+
+                <td class="text-center" line-number>&nbsp;&nbsp;</td>
                 <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
                 <td class="text-center"><?= number_format( $ago) ?></td>
                 <td><?= $dto->locale ?></td>
@@ -53,9 +65,24 @@
 
     </table>
 
+    <p><em><small><?= date( config::$DATETIME_FORMAT) ?></small></em></p>
+
 </div>
 <script>
 $(document).ready( function() {
+    $('#<?= $tblID ?>').on('update-line-numbers', function( i, tr) {
+        let _table = $(this);
+        let lines = $('> tbody > tr', this);
+        $('> thead > tr > td[line-number]', this).html( lines.length);
+
+        lines.each( function( i, tr) {
+            $('> td[line-number]', tr).html( i+1);
+
+        });
+
+    })
+    .trigger('update-line-numbers');
+
     $('> tbody > tr', '#<?= $tblID ?>').each( function( i, tr) {
         let _tr = $(tr);
 

@@ -30,7 +30,7 @@ class controller extends \Controller {
 
 		$this->render([
 			'title' => $this->title = $this->label,
-			'primary' => 'status',
+			'primary' => 'report',
 			'secondary' =>'index'
 
 		]);
