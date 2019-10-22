@@ -42,9 +42,11 @@
             <tr
                 data-id="<?= $dto->id ?>"
                 <?php
-                if ( $ago > 120)
+                if ( $ago > 5760)
+                    print 'class="bg-danger"';
+                elseif ( $ago > 1440)
                     print 'class="bg-warning"';
-                elseif ( $ago < 60)
+                elseif ( $ago <= 60)
                     print 'class="bg-success"';
                 ?>>
 

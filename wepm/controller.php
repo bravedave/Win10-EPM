@@ -58,6 +58,7 @@ class controller extends \Controller {
 
 		if ( 'wemp-log' == $action) {
 			$key = $this->getPost('key');
+			// REVIEW : Should get a password thing happening here
 			if ( '-- some random password --' == $key) {
 				$a = [
 					'created' => \db::dbTimestamp(),
