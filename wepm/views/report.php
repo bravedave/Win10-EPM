@@ -22,7 +22,7 @@
             <tr>
                 <td class="align-bottom text-center" line-number>#</td>
                 <td class="align-bottom">updated</td>
-                <td class="align-bottom text-center">elapsed<br /><i>(minutes)</i></td>
+                <td class="align-bottom text-center">elapsed</td>
                 <td class="align-bottom">locale</td>
                 <td class="align-bottom text-center">defender</td>
                 <td class="align-bottom text-center">Antispyware</td>
@@ -52,7 +52,33 @@
 
                 <td class="text-center" line-number>&nbsp;&nbsp;</td>
                 <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
-                <td class="text-center"><?= number_format( $ago) ?></td>
+                <td class="text-center"><?php
+                    if ( $ago > 1440) {
+                        $minutes = $ago % 60;
+                        $hours = ( ( $ago - $minutes) / 60) % 24;
+                        $days = ( $ago - $minutes - ( $hours * 60)) / 1440;
+
+                        printf( '%s<br />%s.%s.%s',
+                            number_format( $ago),
+                            $days, $hours, $minutes
+                        );
+
+                    }
+                    elseif ( $ago > 60) {
+                        $minutes = $ago % 60;
+                        $hours = ( $ago - $minutes) / 60;
+
+                        printf( '%s<br />%s.%s',
+                            number_format( $ago),
+                            $hours, $minutes
+                        );
+
+                    }
+                    else {
+                        print number_format( $ago);
+
+                    }
+                        ?></td>
                 <td><?= $dto->locale ?></td>
                 <td class="text-center"><?= 'Enabled' == $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
                 <td class="text-center"><?= 'Enabled' == $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
