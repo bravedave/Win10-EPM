@@ -22,7 +22,7 @@
             <tr>
                 <td class="align-bottom text-center" line-number>#</td>
                 <td class="align-bottom">updated</td>
-                <td class="align-bottom text-center">elapsed</td>
+                <td class="align-bottom text-right">elapsed</td>
                 <td class="align-bottom">locale</td>
                 <td class="align-bottom text-center">defender</td>
                 <td class="align-bottom text-center">Antispyware</td>
@@ -52,7 +52,7 @@
 
                 <td class="text-center" line-number>&nbsp;&nbsp;</td>
                 <td><?= strings::asLocalDate( $dto->updated, true) ?></td>
-                <td class="text-center"><?php
+                <td class="text-right"><?php
                     if ( $ago > 1440) {
                         $minutes = $ago % 60;
                         $hours = ( ( $ago - $minutes) / 60) % 24;
