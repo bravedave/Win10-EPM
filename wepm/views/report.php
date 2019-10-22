@@ -58,20 +58,22 @@
                         $hours = ( ( $ago - $minutes) / 60) % 24;
                         $days = ( $ago - $minutes - ( $hours * 60)) / 1440;
 
-                        printf( '%s<br />%s.%s.%s',
-                            number_format( $ago),
-                            $days, $hours, $minutes
-                        );
+                        printf( '%sd, %s:%s', $days, $hours, $minutes );
+                        // printf( '%s<br />%s.%s.%s',
+                        //     number_format( $ago),
+                        //     $days, $hours, $minutes
+                        // );
 
                     }
                     elseif ( $ago > 60) {
                         $minutes = $ago % 60;
                         $hours = ( $ago - $minutes) / 60;
 
-                        printf( '%s<br />%s.%s',
-                            number_format( $ago),
-                            $hours, $minutes
-                        );
+                        printf( '%s:%s', $hours, $minutes );
+                        // printf( '%s<br />%s.%s',
+                        //     number_format( $ago),
+                        //     $hours, $minutes
+                        // );
 
                     }
                     else {
