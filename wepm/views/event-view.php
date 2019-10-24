@@ -20,6 +20,8 @@ $executionPolicy = json_decode( $dto->executionPolicy);
         <tr><td>id</td>                 <td><?= $dto->id  ?></td>           </tr>
         <tr><td>created</td>            <td><?= strings::asLocalDate( $dto->created, $time = true)  ?></td>  </tr>
         <tr><td>locale</td>             <td><?= $dto->locale  ?></td>       </tr>
+        <tr><td>user</td>               <td><?= $dto->user  ?></td>         </tr>
+        <tr><td>WinVer</td>             <td><?= $dto->winver  ?></td>       </tr>
         <tr>
             <td colspan="2" class="p-0">
                 <table class="table table-sm m-0">

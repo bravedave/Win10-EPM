@@ -89,6 +89,8 @@ Try
 		$params = @{
 			key = "-- some random password --";
 			locale = $env:computername;		# 45 chr max
+			user = $env:username;		# 45 chr max
+			winver = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId	# 45 chr max
 			action = "wemp-log";			# 45 chr max
 
 			defender = if ( $defenderOptions.AntivirusEnabled) {'Enabled'} else {'Disabled'};

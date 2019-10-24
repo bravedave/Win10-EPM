@@ -13,7 +13,7 @@ namespace dvc\wepm;
 abstract class config extends \config {
 	static $WEBNAME = 'Win10 End Point Monitor';
 
-	const wepm_db_version = 0.06;
+	const wepm_db_version = 0.07;
 
 	static protected $_WEPM_VERSION = 0;
 

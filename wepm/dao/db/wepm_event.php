@@ -18,6 +18,8 @@ $dbc = 'sqlite' == \config::$DB_TYPE ?
 $dbc->defineField( 'created', 'datetime');
 $dbc->defineField( 'updated', 'datetime');
 $dbc->defineField( 'locale', 'varchar');
+$dbc->defineField( 'winver', 'varchar');
+$dbc->defineField( 'user', 'varchar', 60);
 $dbc->defineField( 'defender', 'varchar');
 $dbc->defineField( 'defenderService', 'varchar');
 $dbc->defineField( 'Antispyware', 'varchar');

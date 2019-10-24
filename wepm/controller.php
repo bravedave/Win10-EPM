@@ -64,6 +64,8 @@ class controller extends \Controller {
 					'created' => \db::dbTimestamp(),
 					'updated' => \db::dbTimestamp(),
 					'locale' => $this->getPost('locale'),
+					'user' => $this->getPost('user'),
+					'winver' => $this->getPost('winver'),
 					'defender' => $this->getPost('defender'),
 					'defenderService' => $this->getPost('defenderService'),
 					'Antispyware' => $this->getPost('Antispyware'),
