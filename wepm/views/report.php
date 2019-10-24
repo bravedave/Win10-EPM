@@ -24,6 +24,7 @@
                 <td class="align-bottom">updated</td>
                 <td class="align-bottom text-right">elapsed</td>
                 <td class="align-bottom">locale</td>
+                <td class="align-bottom">winver</td>
                 <td class="align-bottom text-center">defender</td>
                 <td class="align-bottom text-center">Antispyware</td>
                 <td class="align-bottom text-center">OnAccess<br />Protection</td>
@@ -82,6 +83,7 @@
                     }
                         ?></td>
                 <td><?= $dto->locale ?></td>
+                <td><?= $dto->winver ?></td>
                 <td class="text-center"><?= 'Enabled' == $dto->defender ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
                 <td class="text-center"><?= 'Enabled' == $dto->Antispyware ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
                 <td class="text-center"><?= 'Enabled' == $dto->OnAccessProtection ? strings::html_tick : '<span class="text-danger">&times;</span>' ?></td>
