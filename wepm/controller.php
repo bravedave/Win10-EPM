@@ -13,6 +13,7 @@ namespace dvc\wepm;
 
 use dvc\Request;
 
+use Json;
 use strings;
 use sys;
 
@@ -57,6 +58,9 @@ class controller extends \Controller {
 		$action = $this->getPost('action');
 
 		if ( 'wemp-log' == $action) {
+			/**
+			 * curl -X POST -H "Accept: application/json" -d action=wemp-log -d key="-- some random password --" -d locale="COMPUTE-11" "http://localhost/"
+			 */
 			$key = $this->getPost('key');
 			// REVIEW : Should get a password thing happening here
 			if ( '-- some random password --' == $key) {
@@ -87,11 +91,28 @@ class controller extends \Controller {
 
 			}
 
-			\Json::ack( $action);
+			Json::ack( $action);
 			return;	// because validation is disabled if this action is valid
 
 		}
-		else { \Json::nak( $action); }
+		elseif ( 'delete-endpoint' == $action) {
+			if ( $id = (int)$this->getPost('id')) {
+				$dao = new dao\wepm_event;
+				if ( $dto = $dao->getByID( $id)) {
+					// sys::logger( sprintf('found %s : %s', $dto->locale, __METHOD__));
+					$dao->Q( sprintf( 'DELETE FROM `wepm_event` WHERE `locale` = "%s"', $dao->escape( $dto->locale)));
+
+				}
+				Json::ack( $action);
+
+			}
+			else {
+				Json::nak( $action);
+
+			}
+
+		}
+		else { parent::postHandler(); }
 
 	}
 

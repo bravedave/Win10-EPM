@@ -147,13 +147,81 @@ $(document).ready( function() {
 
         _tr
         .addClass('pointer')
-        .on( 'click', function( e) {
+        .on( 'view', function( e) {
             let _me = $(this);
             let _data = _me.data();
 
             window.location.href = _brayworth_.url('<?= $this->route ?>/view/' + _data.id);
 
-        });
+        })
+        .on( 'delete-endpoint', function( e) {
+            let _me = $(this);
+            let _data = _me.data();
+
+            _brayworth_.modal.call( $('<div title="confirm delete">are you sure ?</div>'), {
+                buttons : {
+                    yes : function(e) {
+                        _brayworth_.post({
+                            url : _brayworth_.url('<?= strings::url( $this->route ) ?>'),
+                            data : {
+                                action : 'delete-endpoint',
+                                id : _data.id
+
+                            },
+
+                        }).then( function( d) {
+                            _brayworth_.growl( d);
+                            window.location.reload();
+
+                        });
+
+                        this.modal( 'close');
+
+                    }
+
+                }
+
+            })
+
+        })
+        .on( 'click', function( e) {
+            e.stopPropagation();e.preventDefault();
+
+            $(this).trigger( 'view');
+
+        })
+        .on( 'contextmenu', function( e) {
+            if ( e.shiftKey)
+                return;
+
+            e.stopPropagation();e.preventDefault();
+
+            _brayworth_.hideContexts();
+
+            let _context = _brayworth_.context();
+            let _contextTarget = $(this);
+
+            _context.append( $('<a href="#"><strong>view</strong></a>').on( 'click', function( e) {
+                e.stopPropagation();e.preventDefault();
+
+                _contextTarget.trigger( 'view');
+                _context.close();
+
+
+            }));
+
+            _context.append( $('<a href="#">delete this end point</a>').on( 'click', function( e) {
+                e.stopPropagation();e.preventDefault();
+
+                _contextTarget.trigger( 'delete-endpoint');
+                _context.close();
+
+
+            }));
+
+            _context.open( e);
+
+        });;
 
     });
 
