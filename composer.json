@@ -1,11 +1,12 @@
 {
 	"name": "bravedave/win10_epm",
 	"description": "Windows 10 End Point Monitor",
+	"version": "0.0.1",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"homepage": "http://brayworth.com",
 	"type": "library",
-	"license": "MIT",
+	"license": "cc-by-4.0",
 	"authors": [{
 		"name": "Brave Dave",
 		"email": "davbray@gmail.com",
@@ -18,7 +19,8 @@
 		}
 	],
 	"require": {
-		"bravedave/dvc": "dev-master"
+		"bravedave/dvc": "dev-master",
+		"ext-sqlite3": "*"
 	},
 	"autoload": {
 		"psr-4": { "dvc\\wepm\\": "wepm/" }
