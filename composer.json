@@ -19,7 +19,7 @@
 		}
 	],
 	"require": {
-		"bravedave/dvc": "dev-master",
+		"bravedave/dvc": "*",
 		"ext-sqlite3": "*"
 	},
 	"autoload": {
