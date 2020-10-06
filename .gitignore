@@ -2,6 +2,3 @@ application/data/*
 vendor/*
 composer.lock
 scripts/clients/*
-
-*.cmd linguist-vendored
-*.sh linguist-vendored
