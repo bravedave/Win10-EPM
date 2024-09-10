@@ -11,11 +11,10 @@
 
 namespace dvc\wepm;
 
-use dvc\Request;
+use bravedave\dvc\Request;
 
 use Json;
 use strings;
-use sys;
 
 class controller extends \Controller {
 
